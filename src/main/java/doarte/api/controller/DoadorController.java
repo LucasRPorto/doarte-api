@@ -4,6 +4,7 @@ import doarte.api.doador.DadosCadastrosDoador;
 import doarte.api.doador.Doador;
 import doarte.api.doador.DoadorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +18,7 @@ public class DoadorController {
     private DoadorRepository repository;
 
     @PostMapping
+    @Transactional
     public void cadastrar(@RequestBody DadosCadastrosDoador dados){
         repository.save(new Doador(dados));
     }
