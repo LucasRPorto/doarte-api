@@ -23,11 +23,13 @@ public class Doador {
     private String email;
     private String telefone;
     private Date nascimento;
+    private Boolean ativo;
 
     @Embedded
     private Endereco endereco;
 
     public Doador(DadosCadastrosDoador dados) {
+        this.ativo=true;
         this.nome = dados.nome();
         this.email= dados.email();
         this.telefone= dados.telefone();
@@ -55,5 +57,9 @@ public class Doador {
 
 
 
+    }
+
+    public void excluir() {
+        this.ativo=false;
     }
 }

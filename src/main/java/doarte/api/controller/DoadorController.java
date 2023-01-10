@@ -27,7 +27,7 @@ public class DoadorController {
     @GetMapping // Não precisa de transactional pois estou apenas listando
     public Page<DadosListagemDoador> listarDoador(@PageableDefault(sort = {"nome"})Pageable paginacao) {
         // Convertendo lista de doador para lista de dados listagem doador (DTO) e motando esquema de paginação
-        return repository.findAll(paginacao).map(DadosListagemDoador::new);
+        return repository.findAllByAtivoTrue(paginacao).map(DadosListagemDoador::new);
     }
 
     @PutMapping
@@ -36,4 +36,14 @@ public class DoadorController {
         var doador = repository.getReferenceById(dados.id());
         doador.atualizarInformacoes(dados);
     }
+
+    //Realizando a exclusão física do meu donator no meu db
+    @DeleteMapping("/{id}") // Path serve para informar que o id é patâmetro do método delete
+    @Transactional
+    public void excluir(@PathVariable Long id){
+        var doador = repository.getReferenceById(id);
+        doador.excluir();
+    }
+
+
 }
