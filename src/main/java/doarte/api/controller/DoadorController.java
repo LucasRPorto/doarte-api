@@ -1,9 +1,6 @@
 package doarte.api.controller;
 
-import doarte.api.doador.DadosCadastrosDoador;
-import doarte.api.doador.DadosListagemDoador;
-import doarte.api.doador.Doador;
-import doarte.api.doador.DoadorRepository;
+import doarte.api.doador.*;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -33,4 +30,10 @@ public class DoadorController {
         return repository.findAll(paginacao).map(DadosListagemDoador::new);
     }
 
+    @PutMapping
+    @Transactional
+    public void atualizar(@RequestBody @Valid DadosAtualizaDoador dados){
+        var doador = repository.getReferenceById(dados.id());
+        doador.atualizarInformacoes(dados);
+    }
 }

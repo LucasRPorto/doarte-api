@@ -34,4 +34,26 @@ public class Doador {
         this.nascimento=dados.nascimento();
         this.endereco=new Endereco(dados.endereco());
     }
+
+    public void atualizarInformacoes(DadosAtualizaDoador dados) {
+
+        if(dados.nome()!= null){
+            this.nome = dados.nome();
+        }
+        if(dados.email()!= null){
+            this.email = dados.email();
+        }
+        if(dados.telefone()!= null){
+            this.telefone = dados.telefone();
+        }
+        if(dados.nascimento()!= null){
+            this.nascimento = dados.nascimento();
+        }
+        if(dados.endereco()!= null){
+            this.endereco.atualizarInformacoes(dados.endereco()) ;
+        }
+
+
+
+    }
 }
