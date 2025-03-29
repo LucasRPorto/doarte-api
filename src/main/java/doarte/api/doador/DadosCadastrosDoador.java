@@ -5,12 +5,12 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import lombok.Data;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 public record DadosCadastrosDoador(
-        @NotBlank //Não pode ser null nem em branco. Necessário colocar o valid no controller e nos dtos
+        @NotBlank
         String nome,
         @NotBlank @Email
         String email,
@@ -19,6 +19,14 @@ public record DadosCadastrosDoador(
         @NotNull
         Date nascimento,
         @NotNull @Valid
-        DadosEndereco endereco) {
+        DadosEndereco endereco,
+        @NotNull
+        BigDecimal valor,
+        @NotBlank
+        String nomeProduto,
+        @NotBlank
+        String sobrenome,
+        @NotBlank
+        String cpf) {
 
 }
